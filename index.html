@@ -1,1 +1,15 @@
-<h1>testtttt</h1>
+<script src="https://js.stripe.com/v3/"></script>
+<button id="checkout-button">Proceed to Payment</button>
+<script>
+  const stripe = Stripe('pk_test_51QQ5xkHVwyufjuifu9LPth9NI3wL1Cb5Iw3Stp1M9lhqd95WIfNwFihoJHhI7Psuev7GxAus3sRp6670vO3yyihs00nFt4Rwkm'); 
+
+  const checkoutSessionId = 'cs_test_a1FwcGzwNeGUxE3vAUxalFSSPxpn5TmB3DDzNrOGwSSSyHayqLxYRTryD4';
+  document.getElementById('checkout-button').addEventListener('click', function () {
+    stripe.redirectToCheckout({ sessionId: checkoutSessionId })
+      .then(function (result) {
+        if (result.error) {
+          console.error(result.error.message);
+        }
+      });
+  });
+</script>
